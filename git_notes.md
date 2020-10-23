@@ -437,3 +437,97 @@ jcbetter@lenovo:~/GitTest$ git commit -m "conflict solved"
 [master 156da89] conflict solved
 ```
 
+
+### 4. 远程库
+
+有很多可供选择的远程库，这里我们选择的是 GitHub 。
+
+#### 4.1 远程库别名
+
+**1. 查看远程库别名**
+
+命令：
+```linux
+git remote -v
+```
+效果：
+```linux
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$ git remote -v
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$
+```
+
+**2. 添加远程库别名**
+
+命令：
+```linux
+git remote add [远程库别名] [远程库地址]
+```
+效果：
+```linux
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$ git remote add git_learn_no
+tes https://github.com/jcbetter/git-learn-notes
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$ git remote -v
+git_learn_notes https://github.com/jcbetter/git-learn-notes (fetch)
+git_learn_notes https://github.com/jcbetter/git-learn-notes (push)
+```
+
+**3. 删除远程库别名**
+
+命令：
+```linux
+git remote remove [远程库别名]
+```
+效果：
+```linux
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$ git remote remove git_learn_notes
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$ git remote -v
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$
+```
+
+#### 4.2 推送
+
+使用 `push` 操作将本地库的某个分支推送到远程库中。
+
+命令：
+```linux
+git push [远程库地址/远程库别名] [分支名]
+```
+效果：
+```linux
+jincheng@LAPTOP-VHI28MJ8:~/git-learn-notes$ git push git_learn_notes master
+Username for 'https://github.com': jcbetter
+Password for 'https://jcbetter@github.com':
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 3.22 KiB | 1.61 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'master' on GitHub by visiting:
+remote:      https://github.com/jcbetter/git-learn-notes/pull/new/master
+remote:
+To https://github.com/jcbetter/git-learn-notes
+ * [new branch]      master -> master
+```
+
+#### 4.3 克隆
+
+命令：
+```linux
+git clone [远程库地址] [本地库名]
+```
+注：若省略本地库名，则在当前目录生成一个与远程库同名的仓库
+
+效果：
+```linux
+jincheng@LAPTOP-VHI28MJ8:~$ git clone https://github.com/jcbetter/git-learn-notes ./git-test-clone
+Cloning into './git-test-clone'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (5/5), done.
+Unpacking objects: 100% (9/9), done.
+remote: Total 9 (delta 0), reused 3 (delta 0), pack-reused 0
+jincheng@LAPTOP-VHI28MJ8:~$ cd git-test-clone/
+jincheng@LAPTOP-VHI28MJ8:~/git-test-clone$ ls
+git_notes.md
+```
