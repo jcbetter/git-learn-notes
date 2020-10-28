@@ -230,7 +230,7 @@ drwxr-xr-x 1 jincheng jincheng     4096 Oct 24 09:26 ..
 ```
 
 
-### 3 `gz`、`zip`、`rar`
+### 3. `gz`、`zip`、`rar`
 
 **1. `gz`**
 
@@ -243,7 +243,7 @@ gzip [被压缩文件名]
 
 解压：
 ```linux
-gunzip -d [压缩文件名]
+gunzip [压缩文件名]
 ```
 
 命令执行后会去掉压缩文件名的后缀 `.gz` 。
@@ -284,3 +284,380 @@ drwxr-xr-x 1 jincheng jincheng     4096 Oct 24 09:26 ..
 -rw-r--r-- 1 jincheng jincheng 52293093 Oct 24 10:52 test.rar
 -rw-r--r-- 1 jincheng jincheng 60414381 Oct 24 10:47 test.zip
 ```
+
+
+### 4. `ls`
+
+
+### 5. `head`
+
+语法：
+```linux
+head [参数] [文件名]
+```
+
+参数：
+- `-n [行数]`：等价于 `-[行数]` ，显示文件的前几行
+- `-c [行数]`：显示文件的前几个字节
+
+实例：
+```linux
+# 文件内容
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat file
+Talk is cheap, show me the code.
+Practise makes perfect.
+Where there is a will, there is a way.
+Good good study, day day up.
+You say hi hi hi, Mr.Black.
+
+# 显示文件前 2 行
+
+jincheng@LAPTOP-VHI28MJ8:~$ head -n 2 file
+Talk is cheap, show me the code.
+Practise makes perfect.
+
+# 显示文件前 2 行
+
+jincheng@LAPTOP-VHI28MJ8:~$ head -2 file
+Talk is cheap, show me the code.
+Practise makes perfect.
+
+# 显示文件前 10 个字节
+
+jincheng@LAPTOP-VHI28MJ8:~$ head -c 10 file
+Talk is ch
+```
+
+
+### 6. `tail`
+
+语法：
+```linux
+tail [参数] [文件名]
+```
+
+参数：
+- `+[行数]`：显示从特定行到文件尾部
+- `-n [行数]`：等价于 `-[行数]` ，显示文件的最后几行
+- `-c [行数]`：显示文件的最后几个字节
+
+实例：
+```linux
+# 文件内容
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat file
+Talk is cheap, show me the code.
+Practise makes perfect.
+Where there is a will, there is a way.
+Good good study, day day up.
+You say hi hi hi, Mr.Black.
+
+# 显示文件第 2 行至末尾
+
+jincheng@LAPTOP-VHI28MJ8:~$ tail +2 file
+Practise makes perfect.
+Where there is a will, there is a way.
+Good good study, day day up.
+You say hi hi hi, Mr.Black.
+
+# 显示文件最后 2 行
+
+jincheng@LAPTOP-VHI28MJ8:~$ tail -2 file
+Good good study, day day up.
+You say hi hi hi, Mr.Black.
+
+# 显示文件最后 10 个字节
+
+jincheng@LAPTOP-VHI28MJ8:~$ tail -c 10 file
+Mr.Black.
+```
+
+
+### 7. `cat`
+
+cat（concatenate）命令用于连接文件并打印到标准输出设备上。
+
+语法：
+```linux
+cat [选项] [文件名]
+```
+
+选项：
+- `-n`：从 1 对文件进行编号，包括空白行
+- `-b`：从 1 对文件进行编号，空白行除外
+
+实例：
+```linux
+# 文件内容
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat file
+Talk is cheap, show me the code.
+
+Practise makes perfect.
+
+Where there is a will, there is a way.
+
+Good good study, day day up.
+
+You say hi hi hi, Mr.Black.
+
+# 编号，包括空白行
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat -n file
+     1  Talk is cheap, show me the code.
+     2
+     3  Practise makes perfect.
+     4
+     5  Where there is a will, there is a way.
+     6
+     7  Good good study, day day up.
+     8
+     9  You say hi hi hi, Mr.Black.
+
+# 编号。空包行除外
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat -b file
+     1  Talk is cheap, show me the code.
+
+     2  Practise makes perfect.
+
+     3  Where there is a will, there is a way.
+
+     4  Good good study, day day up.
+
+     5  You say hi hi hi, Mr.Black.
+
+# 将文件备份到其他文件中
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat file > file.bak
+
+# 查看备份文件
+
+jincheng@LAPTOP-VHI28MJ8:~$ cat file.bak
+Talk is cheap, show me the code.
+
+Practise makes perfect.
+
+Where there is a will, there is a way.
+
+Good good study, day day up.
+
+You say hi hi hi, Mr.Black.
+```
+
+
+### 8. `echo`
+
+echo 是 shell 的指令，用于字符串的输出。
+
+用法：
+- `echo [字符串]`：显示一个字符串
+- `echo -e [字符串]`：`-e` 选项开启转义，显示一个带有转义字符的字符串
+- `echo "Everything is just good!" > hello.txt`：将结果定向至文件
+- echo \`ls /tmp/\`：显示命令执行的结果
+
+
+### 9. `ps`
+
+ps（process status）命令用于显示当前进程的状态。
+
+语法：
+```linux
+ps [选项]
+```
+
+选项：
+- `-u [用户名]`：显示指定用户的进程信息
+- `-e`：显示所有的进程
+- `-f`：显示较为详细的信息
+- `-au`：显示更详细的进程信息
+- `-aux`：显示包含其他使用者的更为详细的进程信息
+
+实例：
+```linux
+# 显示指定用户进程
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -u jincheng
+  PID TTY          TIME CMD
+    9 tty1     00:00:00 bash
+   53 tty1     00:00:00 tail
+  252 tty1     00:00:00 ps
+
+# 显示所有进程
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -e
+  PID TTY          TIME CMD
+    1 ?        00:00:00 init
+    8 tty1     00:00:00 init
+    9 tty1     00:00:00 bash
+   53 tty1     00:00:00 tail
+  247 tty1     00:00:00 ps
+
+# 显示较为详细的信息
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -f
+UID        PID  PPID  C STIME TTY          TIME CMD
+jincheng     9     8  0 08:11 tty1     00:00:00 -bash
+jincheng    53     9  0 08:14 tty1     00:00:00 tail - v-1 file
+jincheng   248     9  0 09:12 tty1     00:00:00 ps -f
+
+# 显示更为详细的信息
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -au
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         8  0.0  0.0   8936   224 tty1     Ss   08:11   0:00 /init
+jincheng     9  0.0  0.0  16916  3688 tty1     S    08:11   0:00 -bash
+jincheng    53  0.0  0.0  13992   864 tty1     T    08:14   0:00 tail - v-1 file
+jincheng   249  0.0  0.0  17384  1924 tty1     R    09:12   0:00 ps -au
+
+# 显示所有进程较为的详细信息 【常用】
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 08:11 ?        00:00:00 /init
+root         8     1  0 08:11 tty1     00:00:00 /init
+jincheng     9     8  0 08:11 tty1     00:00:00 -bash
+jincheng    53     9  0 08:14 tty1     00:00:00 tail - v-1 file
+jincheng   250     9  0 09:12 tty1     00:00:00 ps -ef
+
+# 显示包含其他使用者更为详细的信息 【常用】
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   8936   316 ?        Ssl  08:11   0:00 /init
+root         8  0.0  0.0   8936   224 tty1     Ss   08:11   0:00 /init
+jincheng     9  0.0  0.0  16916  3688 tty1     S    08:11   0:00 -bash
+jincheng    53  0.0  0.0  13992   864 tty1     T    08:14   0:00 tail - v-1 file
+jincheng   251  0.0  0.0  17648  2052 tty1     R    09:12   0:00 ps -aux
+```
+
+
+### 10 `kill`
+
+kill 命令可将指定的信息送至程序，用于删除执行中的程序或工作。预设的信息为 SIGTERM(15) ，可将指定程序终止。若仍无法终止该程序，可使用 SIGKILL(9) 信息尝试强制删除程序。
+
+语法：
+```linux
+kill -[信息编号] [PID]
+```
+
+信息编号：可使用 `kill -l` 列出所有信息编号及其名称。
+- `1`：SIGHUP ，重新加载进程
+- `9`：SIGKILL ，杀死一个进程
+- `15`：SIGTERM ，正常停止一个进程
+
+实例：
+```linux
+# 查看进程信息
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 08:11 ?        00:00:00 /init
+root         8     1  0 08:11 tty1     00:00:00 /init
+jincheng     9     8  0 08:11 tty1     00:00:00 -bash
+jincheng    53     9  0 08:14 tty1     00:00:00 tail - v-1 file
+jincheng   262     9  0 09:33 tty1     00:00:00 ps -ef
+
+# 杀死一个进程
+
+jincheng@LAPTOP-VHI28MJ8:~$ kill 53
+[1]+  Terminated              tail - v-1 file
+
+# 查看进程信息
+
+jincheng@LAPTOP-VHI28MJ8:~$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 08:11 ?        00:00:00 /init
+root         8     1  0 08:11 tty1     00:00:00 /init
+jincheng     9     8  0 08:11 tty1     00:00:00 -bash
+jincheng   263     9  0 09:34 tty1     00:00:00 ps -ef
+```
+
+
+### 11. `chmod`
+
+chmod（change mode）命令是控制用户对文件权限的命令。
+
+语法：
+```linux
+chmod [选项] [权限模式] [文件名]
+```
+
+选项：
+- `-v`：显示权限变更的详细信息
+- `-R`：以递归的方式对目录下的所有文件进行相同的权限变更
+
+权限模式：
+- 符号模式：
+  - `u` 文件所有者、`g` 群组用户、`o` 其他用户、`a` 所有用户
+  - `+` 增加权限、`-` 取消权限、`=` 设定权限
+  - `r` 读、`w` 写、`x` 执行
+- 八进制模式：
+  - `r` 4、`w` 2、`x` 1
+
+实例：
+```linux
+# 列出文件详细信息
+
+jincheng@LAPTOP-VHI28MJ8:~/test$ ls -l
+total 0
+-rw-r--r-- 1 jincheng jincheng 157 Oct 26 09:50 file
+
+# 为文件所有者加上执行权限
+
+jincheng@LAPTOP-VHI28MJ8:~/test$ chmod u+x file
+jincheng@LAPTOP-VHI28MJ8:~/test$ ls -l
+total 0
+-rwxr--r-- 1 jincheng jincheng 157 Oct 26 09:50 file
+
+# 修改文件权限为指定值
+
+jincheng@LAPTOP-VHI28MJ8:~/test$ chmod -v 644 file
+mode of 'file' changed from 0744 (rwxr--r--) to 0644 (rw-r--r--)
+```
+
+
+### 12. `chown`
+
+chown 命令用于改变文件的所有者，需要 root 权限才能执行。
+
+语法：
+```linux
+chmod [选项] [用户:群组] [文件名]
+```
+
+选项：
+- `-v`：显示详细的处理信息
+- `-c`：显示更改部分的信息
+- `-R`：以递归的方式对目录下的所有文件进行相同处理
+
+实例：
+```linux
+# 列出文件信息
+jincheng@LAPTOP-VHI28MJ8:~/test$ ls -l
+total 0
+-rw-r--r-- 1 jincheng jincheng 157 Oct 26 09:50 file
+
+# 改变文件所有者
+
+jincheng@LAPTOP-VHI28MJ8:~/test$ sudo chown root file
+jincheng@LAPTOP-VHI28MJ8:~/test$ ls -l
+total 0
+-rw-r--r-- 1 root jincheng 157 Oct 26 09:50 file
+
+# 改变文件群组
+
+jincheng@LAPTOP-VHI28MJ8:~/test$ sudo chown :root file
+jincheng@LAPTOP-VHI28MJ8:~/test$ ls -l
+total 0
+-rw-r--r-- 1 root root 157 Oct 26 09:50 file
+
+# 改变文件所有者和群组
+
+jincheng@LAPTOP-VHI28MJ8:~/test$ sudo chown jincheng:jincheng file
+jincheng@LAPTOP-VHI28MJ8:~/test$ ls -l
+total 0
+-rw-r--r-- 1 jincheng jincheng 157 Oct 26 09:50 file
+```
+
